@@ -2,38 +2,26 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build-sqs-publisher",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/AWSCourseWork.sln",
+                "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher/Sqs.SqsPublisher.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "build-sqs-consumer",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "publish",
-                "${workspaceFolder}/AWSCourseWork.sln",
+                "build",
+                "${workspaceFolder}/src/Sqs/Sqs.SqsConsumer/Sqs.SqsConsumer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/AWSCourseWork.sln"
             ],
             "problemMatcher": "$msCompile"
         }

@@ -5,12 +5,12 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
-            "name": ".NET Core Launch (console)",
+            "name": "Sqs.SqsPublisher",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build-sqs-publisher",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher/bin/Debug/net7.0/AWSCourseWork.Sqs.SqsPublisher.dll",
+            "program": "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher/bin/Debug/net7.0/Sqs.SqsPublisher.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -18,9 +18,20 @@
             "stopAtEntry": false
         },
         {
-            "name": ".NET Core Attach",
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "Sqs.SqsConsumer",
             "type": "coreclr",
-            "request": "attach"
+            "request": "launch",
+            "preLaunchTask": "build-sqs-consumer",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Sqs/Sqs.SqsConsumer/bin/Debug/net7.0/Sqs.SqsConsumer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Sqs/Sqs.SqsConsumer",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
         }
     ]
 }
