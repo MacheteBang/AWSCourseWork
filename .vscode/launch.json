@@ -5,14 +5,14 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
-            "name": "Sqs.SqsPublisher",
+            "name": "SqsPublisher",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build-sqs-publisher",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher/bin/Debug/net7.0/Sqs.SqsPublisher.dll",
+            "program": "${workspaceFolder}/src/Sqs/SqsPublisher/bin/Debug/net7.0/SqsPublisher.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher",
+            "cwd": "${workspaceFolder}/src/Sqs/SqsPublisher",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
@@ -21,14 +21,14 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
-            "name": "Sqs.SqsConsumer",
+            "name": "SqsConsumer",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build-sqs-consumer",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/Sqs/Sqs.SqsConsumer/bin/Debug/net7.0/Sqs.SqsConsumer.dll",
+            "program": "${workspaceFolder}/src/Sqs/SqsConsumer/bin/Debug/net7.0/SqsConsumer.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/Sqs/Sqs.SqsConsumer",
+            "cwd": "${workspaceFolder}/src/Sqs/SqsConsumer",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false

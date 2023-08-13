@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher/Sqs.SqsPublisher.csproj",
+                "${workspaceFolder}/src/Sqs/SqsPublisher/SqsPublisher.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Sqs/Sqs.SqsConsumer/Sqs.SqsConsumer.csproj",
+                "${workspaceFolder}/src/Sqs/SqsConsumer/SqsConsumer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
