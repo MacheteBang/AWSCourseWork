@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/Sqs/bin/Debug/net7.0/AWSCourseWork.SqsPublisher.dll",
+            "program": "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher/bin/Debug/net7.0/AWSCourseWork.Sqs.SqsPublisher.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/Sqs",
+            "cwd": "${workspaceFolder}/src/Sqs/Sqs.SqsPublisher",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
