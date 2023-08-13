@@ -5,10 +5,30 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "Sqs Customers.Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Sqs/Customers.Api/bin/Debug/net7.0/Customers.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Sqs/Customers.Api",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
             "name": "SqsPublisher",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build-sqs-publisher",
+            "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/src/Sqs/SqsPublisher/bin/Debug/net7.0/SqsPublisher.dll",
             "args": [],
@@ -24,7 +44,7 @@
             "name": "SqsConsumer",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build-sqs-consumer",
+            "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/src/Sqs/SqsConsumer/bin/Debug/net7.0/SqsConsumer.dll",
             "args": [],

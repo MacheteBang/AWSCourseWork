@@ -2,24 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-sqs-publisher",
+            "label": "build",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Sqs/SqsPublisher/SqsPublisher.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "build-sqs-consumer",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/src/Sqs/SqsConsumer/SqsConsumer.csproj",
+                "${workspaceFolder}/AWSCourseWork.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
