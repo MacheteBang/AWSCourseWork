@@ -1,6 +1,4 @@
 ﻿using Customers.Api.Contracts.Data;
-using Customers.Api.Database;
-using Dapper;
 
 namespace Customers.Api.Repositories;
 

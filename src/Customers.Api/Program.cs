@@ -4,10 +4,8 @@ using Customers.Api.Messaging;
 using Customers.Api.Repositories;
 using Customers.Api.Services;
 using Customers.Api.Validation;
-using Dapper;
 using FluentValidation.AspNetCore;
 using Microsoft.Net.Http.Headers;
-using SQLitePCL;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -25,10 +23,6 @@ builder.Services.AddControllers().AddFluentValidation(x =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-SqlMapper.RemoveTypeMap(typeof(Guid));
-SqlMapper.RemoveTypeMap(typeof(Guid?));
-
 
 builder.Services.Configure<TopicSettings>(builder.Configuration.GetSection(TopicSettings.Key));
 builder.Services.AddSingleton<IAmazonSimpleNotificationService, AmazonSimpleNotificationServiceClient>();
