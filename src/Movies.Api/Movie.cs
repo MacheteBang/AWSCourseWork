@@ -24,10 +24,10 @@ public class Movie1
 public class Movie2
 {
     [JsonPropertyName("pk")]
-    public string Pk => ReleaseYear.ToString();
+    public string Pk => Title.ToString();
 
     [JsonPropertyName("sk")]
-    public string Sk => Title.ToString();
+    public string Sk => ReleaseYear.ToString();
 
     public Guid Id { get; set; }
 
