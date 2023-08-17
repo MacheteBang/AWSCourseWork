@@ -40,7 +40,7 @@ public class CustomerController : ControllerBase
         var customerResponse = customer.ToCustomerResponse();
         return Ok(customerResponse);
     }
-    
+
     [HttpGet("customers")]
     public async Task<IActionResult> GetAll()
     {
@@ -48,11 +48,12 @@ public class CustomerController : ControllerBase
         var customersResponse = customers.ToCustomersResponse();
         return Ok(customersResponse);
     }
-    
+
     [HttpPut("customers/{id:guid}")]
     public async Task<IActionResult> Update(
         [FromMultiSource] UpdateCustomerRequest request)
     {
+        var requestStartedAt = DateTime.UtcNow;
         var existingCustomer = await _customerService.GetAsync(request.Id);
 
         if (existingCustomer is null)
@@ -61,12 +62,12 @@ public class CustomerController : ControllerBase
         }
 
         var customer = request.ToCustomer();
-        await _customerService.UpdateAsync(customer);
+        await _customerService.UpdateAsync(customer, requestStartedAt);
 
         var customerResponse = customer.ToCustomerResponse();
         return Ok(customerResponse);
     }
-    
+
     [HttpDelete("customers/{id:guid}")]
     public async Task<IActionResult> Delete([FromRoute] Guid id)
     {

@@ -1,3 +1,4 @@
+using Amazon.DynamoDBv2;
 using Amazon.SimpleNotificationService;
 using Amazon.SimpleNotificationService.Model;
 using Customers.Api.Messaging;
@@ -31,6 +32,8 @@ builder.Services.AddSingleton<ISnsMessenger, SnsMessenger>();
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
 builder.Services.AddSingleton<ICustomerService, CustomerService>();
 builder.Services.AddSingleton<IGitHubService, GitHubService>();
+
+builder.Services.AddSingleton<IAmazonDynamoDB, AmazonDynamoDBClient>();
 
 builder.Services.AddHttpClient("GitHub", httpClient =>
 {
