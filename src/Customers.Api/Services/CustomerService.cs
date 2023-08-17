@@ -54,13 +54,19 @@ public class CustomerService : ICustomerService
         return customerDto?.ToCustomer();
     }
 
+    public async Task<Customer?> GetByEmailAsync(string email)
+    {
+        var customerDto = await _customerRepository.GetByEmailAsync(email);
+        return customerDto?.ToCustomer();
+    }
+
     public async Task<IEnumerable<Customer>> GetAllAsync()
     {
         var customerDtos = await _customerRepository.GetAllAsync();
         return customerDtos.Select(x => x.ToCustomer());
     }
 
-    public async Task<bool> UpdateAsync(Customer customer)
+    public async Task<bool> UpdateAsync(Customer customer, DateTime requestStartedAt)
     {
         var customerDto = customer.ToCustomerDto();
 
@@ -71,7 +77,7 @@ public class CustomerService : ICustomerService
             throw new ValidationException(message, GenerateValidationError(nameof(customer.GitHubUsername), message));
         }
 
-        var response = await _customerRepository.UpdateAsync(customerDto);
+        var response = await _customerRepository.UpdateAsync(customerDto, requestStartedAt);
         if (response)
         {
             await _snsMessenger.PublishMessageAsync(customer.ToCustomerUpdatedMessage());

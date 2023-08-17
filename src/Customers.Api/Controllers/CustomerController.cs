@@ -1,3 +1,4 @@
+using Amazon.DynamoDBv2.Model.Internal.MarshallTransformations;
 using Customers.Api.Contracts.Requests;
 using Customers.Api.Mapping;
 using Customers.Api.Services;
@@ -27,10 +28,12 @@ public class CustomerController : ControllerBase
         return CreatedAtAction("Get", new { customerResponse.Id }, customerResponse);
     }
 
-    [HttpGet("customers/{id:guid}")]
-    public async Task<IActionResult> Get([FromRoute] Guid id)
+    [HttpGet("customers/{idOrEmail}")]
+    public async Task<IActionResult> Get([FromRoute] string idOrEmail)
     {
-        var customer = await _customerService.GetAsync(id);
+        var isGuid = Guid.TryParse(idOrEmail, out var id);
+        var customer = isGuid ? await _customerService.GetAsync(id)
+            : await _customerService.GetByEmailAsync(idOrEmail);
 
         if (customer is null)
         {
@@ -40,7 +43,7 @@ public class CustomerController : ControllerBase
         var customerResponse = customer.ToCustomerResponse();
         return Ok(customerResponse);
     }
-    
+
     [HttpGet("customers")]
     public async Task<IActionResult> GetAll()
     {
@@ -48,11 +51,12 @@ public class CustomerController : ControllerBase
         var customersResponse = customers.ToCustomersResponse();
         return Ok(customersResponse);
     }
-    
+
     [HttpPut("customers/{id:guid}")]
     public async Task<IActionResult> Update(
         [FromMultiSource] UpdateCustomerRequest request)
     {
+        var requestStartedAt = DateTime.UtcNow;
         var existingCustomer = await _customerService.GetAsync(request.Id);
 
         if (existingCustomer is null)
@@ -61,12 +65,12 @@ public class CustomerController : ControllerBase
         }
 
         var customer = request.ToCustomer();
-        await _customerService.UpdateAsync(customer);
+        await _customerService.UpdateAsync(customer, requestStartedAt);
 
         var customerResponse = customer.ToCustomerResponse();
         return Ok(customerResponse);
     }
-    
+
     [HttpDelete("customers/{id:guid}")]
     public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
