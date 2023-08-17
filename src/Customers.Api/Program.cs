@@ -1,6 +1,5 @@
 using Amazon.SimpleNotificationService;
 using Amazon.SimpleNotificationService.Model;
-using Customers.Api.Database;
 using Customers.Api.Messaging;
 using Customers.Api.Repositories;
 using Customers.Api.Services;
@@ -27,13 +26,9 @@ builder.Services.AddControllers().AddFluentValidation(x =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-SqlMapper.AddTypeHandler(new GuidTypeHandler());
 SqlMapper.RemoveTypeMap(typeof(Guid));
 SqlMapper.RemoveTypeMap(typeof(Guid?));
 
-builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
-    new SqliteConnectionFactory(config.GetValue<string>("Database:ConnectionString")!));
-builder.Services.AddSingleton<DatabaseInitializer>();
 
 builder.Services.Configure<TopicSettings>(builder.Configuration.GetSection(TopicSettings.Key));
 builder.Services.AddSingleton<IAmazonSimpleNotificationService, AmazonSimpleNotificationServiceClient>();
@@ -64,8 +59,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseMiddleware<ValidationExceptionMiddleware>();
 app.MapControllers();
-
-var databaseInitializer = app.Services.GetRequiredService<DatabaseInitializer>();
-await databaseInitializer.InitializeAsync();
 
 app.Run();
