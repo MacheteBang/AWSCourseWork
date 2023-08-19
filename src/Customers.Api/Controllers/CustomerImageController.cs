@@ -1,3 +1,7 @@
+namespace Customers.Api.Controllers;
+
+using System.Net;
+using Amazon.S3;
 using Customers.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +19,7 @@ public class CustomerImageController : ControllerBase
     public async Task<IActionResult> Upload([FromRoute] Guid id, [FromForm(Name = "Data")] IFormFile file)
     {
         var response = await _customerImageService.UploadImageAsync(id, file);
-        if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)
+        if (response.HttpStatusCode == HttpStatusCode.OK)
         {
             return Ok();
         }
@@ -26,7 +30,16 @@ public class CustomerImageController : ControllerBase
     [HttpGet("customers/{id:guid}/image")]
     public async Task<IActionResult> Get([FromRoute] Guid id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = await _customerImageService.GetImageAsync(id);
+            return File(response.ResponseStream, response.Headers.ContentType);
+        }
+        catch (AmazonS3Exception ex) when (ex.Message is "The specified key does not exist.")
+        {
+            return NotFound();
+        }
+
     }
 
     [HttpDelete("customers/{id:guid}/image")]
