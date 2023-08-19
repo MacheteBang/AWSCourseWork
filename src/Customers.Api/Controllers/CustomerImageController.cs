@@ -39,12 +39,18 @@ public class CustomerImageController : ControllerBase
         {
             return NotFound();
         }
-
     }
 
     [HttpDelete("customers/{id:guid}/image")]
     public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        throw new NotImplementedException();
+
+        var response = await _customerImageService.DeleteImageAsync(id);
+        return response.HttpStatusCode switch
+        {
+            HttpStatusCode.NoContent => Ok(),
+            HttpStatusCode.NotFound => NotFound(),
+            _ => BadRequest()
+        };
     }
 }
